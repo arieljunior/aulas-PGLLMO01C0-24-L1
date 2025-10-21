@@ -10,13 +10,15 @@ export default function ButtonNative() {
 
 export function ButtomCustom({
     title,
-    variant = "DEFAULT"
+    variant = "DEFAULT",
+    onPress
 }: ButtonCustomProps){
     return (<TouchableOpacity 
         style={[
             styles.button,
             styles[variant]
-        ]}>
+        ]}
+        onPress={onPress}>
         <Text style={styles.buttonTitle}>{title}</Text>
     </TouchableOpacity>)
 }
