@@ -1,11 +1,11 @@
 import CardCustom from '@/components/Card';
 import InputSearch from '@/components/InputSearch';
-import { getTodos, Todo } from '@/services/get-todos';
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useTodos } from '@/hooks/useTodos';
+import { useCallback, useMemo, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 
 export default function Index() {
-    const [todos, setTodos] = useState<Todo[]>([]);
+    const { todos } = useTodos();
     const [searchText, setSearchText] = useState<string | null>(null)
 
     const todosFiltered = useMemo(() => {
@@ -17,12 +17,8 @@ export default function Index() {
             todo.description.toLowerCase().includes(searchTextLower)
         ))
         return todosFiltered
-    }, [todos, searchText])
+    }, [todos, searchText]);
 
-    useEffect(() => {
-        const data = getTodos();
-        setTodos(data)
-    }, []);
 
     const handleChangeSearchInput = useCallback((newValue: string) => {
         setSearchText(newValue)
