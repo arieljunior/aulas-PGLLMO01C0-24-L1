@@ -1,23 +1,31 @@
 import { ButtomCustom } from "@/components/Button";
+import { getSelectedApp, setSelectedApp } from "@/services/selected-app";
 import { useRouter } from 'expo-router';
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function Index() {
     const router = useRouter()
 
     const handleClickButtonPlayground = useCallback(() => {
-        router.navigate('/playground?id=12&journey=home')
+        router.replace('/playground?id=12&journey=home')
+        setSelectedApp('/playground')
     }, [router]);
 
     const handleClickButtonTodoApp = useCallback(() => {
-        router.navigate({
-            pathname: '/todo-app',
-            params: {
-                journer: 'home'
+        router.replace({
+            pathname: '/todo-app'
+        });
+        setSelectedApp('/todo-app')
+    }, [router]);
+
+    useEffect(()=>{
+        getSelectedApp().then(app =>{
+            if(app){
+                router.replace(app)
             }
         })
-    }, [router]);
+    },[router])
 
     return <View style={styles.container}>
 

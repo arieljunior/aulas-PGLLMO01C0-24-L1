@@ -1,4 +1,4 @@
-import { getTodos, Todo } from "@/services/get-todos";
+import { getTodos, Todo } from "@/services/todos.service";
 import { useEffect, useState } from "react";
 
 interface TodoState {
@@ -13,11 +13,13 @@ export const useTodos = () => {
     });
 
     useEffect(() => {
-        const data = getTodos();
-        setState({
-            isLoading: false,
-            todos: data
-        })
+        getTodos().then(todos => {
+            setState({
+                isLoading: false,
+                todos
+            });
+        });
+
     }, []);
 
     return {
