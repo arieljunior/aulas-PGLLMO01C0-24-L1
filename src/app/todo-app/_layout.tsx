@@ -19,7 +19,7 @@ export default function RootLayout() {
       }}
     />
     <Stack.Screen
-      name="/todo-app/create-todo"
+      name="create-todo"
       options={{
         title: "Nova tarefa"
       }}
