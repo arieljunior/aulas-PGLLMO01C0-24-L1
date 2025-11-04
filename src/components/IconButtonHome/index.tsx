@@ -5,11 +5,10 @@ import { Pressable } from "react-native";
 export default function IconButtonHome(){
     const router = useRouter();
     return (
-        <Pressable onPress={() => router.navigate('/')}>
+        <Pressable onPress={() => router.navigate('/todo-app/settings')}>
             <MaterialIcons 
-                name="android"
-                size={40}
-                color='black'
+                name="settings"
+                size={36}
             />
         </Pressable>
     )

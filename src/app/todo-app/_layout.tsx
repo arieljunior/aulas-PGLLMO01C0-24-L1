@@ -19,9 +19,30 @@ export default function RootLayout() {
       }}
     />
     <Stack.Screen
-      name="create-todo"
+      name="create"
       options={{
         title: "Nova tarefa"
+      }}
+    />
+
+    <Stack.Screen
+      name="settings"
+      options={{
+        title: "Configurações"
+      }}
+    />
+
+    <Stack.Screen
+      name="view/[id]"
+      options={{
+        title: "Visualizar Tarefa"
+      }}
+    />
+
+    <Stack.Screen
+      name="edit/[id]"
+      options={{
+        title: "Editar Tarefa"
       }}
     />
   </Stack>;

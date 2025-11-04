@@ -11,3 +11,7 @@ export async function getSelectedApp(): Promise<Apps | null>{
     const myApp = await AsyncStorage.getItem(KEYS_STORAGE.SELECTED_APP)
     return myApp as Apps;
 }
+
+export async function removeSelectedApp() {
+    await AsyncStorage.removeItem(KEYS_STORAGE.SELECTED_APP);
+}

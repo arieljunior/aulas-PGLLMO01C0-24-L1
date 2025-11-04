@@ -7,7 +7,7 @@ export interface CardProps{
     onClickCard: () => void,
     icon?: {
         name: ComponentProps<typeof Ionicons>['name'],
-        onClick: () => void,
+        onClick?: () => void,
         color?: string
     }
 }

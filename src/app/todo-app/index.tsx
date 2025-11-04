@@ -27,7 +27,7 @@ export default function Index() {
     }, []);
 
     const handleClickCreateTodo = useCallback(() => {
-        router.push('/todo-app/create-todo');
+        router.push('/todo-app/create');
     }, [router]);
 
     return <View style={{
@@ -36,31 +36,38 @@ export default function Index() {
         paddingVertical: 10,
     }}>
 
-        {isLoading ? <ActivityIndicator size="small" color="#0000ff" /> : <View>
+        {
+            isLoading ? <ActivityIndicator size="small" color="#0000ff" /> : <View>
 
-            <InputSearch
-                onChange={handleChangeSearchInput}
-                value={searchText || ''}
-                onClickClear={() => setSearchText(null)}
-            />
+                <InputSearch
+                    onChange={handleChangeSearchInput}
+                    value={searchText || ''}
+                    onClickClear={() => setSearchText(null)}
+                    placeholder='Pesquisar...'
+                />
 
-            <View>
-                {
-                    todosFiltered.length === 0 ? <Text>Sem dados</Text> :
-                        <FlatList
-                            data={todosFiltered}
-                            renderItem={({ item }) =>
-                                <CardCustom
-                                    key={item.id}
-                                    title={item.title}
-                                    description={item.description}
-                                    onClickCard={() => { }}
-                                />
-                            }
-                        />}
+                <View>
+                    {
+                        todosFiltered.length === 0 ? <Text>Sem dados</Text> :
+                            <FlatList
+                                data={todosFiltered}
+                                renderItem={({ item }) =>
+                                    <CardCustom
+                                        key={item.id}
+                                        title={item.title}
+                                        description={item.description}
+                                        icon={{
+                                            name: 'open-outline'
+                                        }}
+                                        onClickCard={() => router.push(`/todo-app/view/${item.id}`)}
+                                    />
+                                }
+                            />
+                    }
+                </View>
+
             </View>
-
-        </View>}
+        }
 
         <FloatButton
             onPress={handleClickCreateTodo}

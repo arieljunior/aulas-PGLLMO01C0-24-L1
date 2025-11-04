@@ -1,5 +1,6 @@
 import { getTodos, Todo } from "@/services/todos.service";
-import { useEffect, useState } from "react";
+import { useFocusEffect } from "expo-router";
+import { useState } from "react";
 
 interface TodoState {
     isLoading: boolean,
@@ -12,7 +13,7 @@ export const useTodos = () => {
         todos: []
     });
 
-    useEffect(() => {
+    useFocusEffect(() => {
         getTodos().then(todos => {
             setState({
                 isLoading: false,
@@ -20,7 +21,7 @@ export const useTodos = () => {
             });
         });
 
-    }, []);
+    });
 
     return {
         isLoading: state.isLoading,
